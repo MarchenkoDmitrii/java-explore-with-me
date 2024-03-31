@@ -2,6 +2,7 @@ package ru.practicum.model;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 

@@ -9,7 +9,6 @@ import ru.practicum.EndpointModel;
 import ru.practicum.EndpointResponse;
 import ru.practicum.service.EndpointService;
 
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -28,9 +27,9 @@ public class StatController {
 
     @GetMapping("/stats")
     public ResponseEntity<EndpointResponse> getStats(@RequestParam(name = "start") String start,
-                                           @RequestParam(name = "end") String end,
-                                           @RequestParam(name = "uris", required = false) String[] uris,
-                                           @RequestParam(name = "unique", defaultValue = "false") boolean unique) {
+                                                     @RequestParam(name = "end") String end,
+                                                     @RequestParam(name = "uris", required = false) String[] uris,
+                                                     @RequestParam(name = "unique", defaultValue = "false") boolean unique) {
         log.info("Statistic service: запрошена статистика для эндпоинтов {}", uris);
         return ResponseEntity.ok(endpointService.getStats(start, end, uris, unique));
     }

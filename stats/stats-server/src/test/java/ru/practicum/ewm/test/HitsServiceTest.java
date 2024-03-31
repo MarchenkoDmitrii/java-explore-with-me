@@ -5,12 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.EndpointResponse;
-import ru.practicum.mapper.EndpointMapper;
 import ru.practicum.model.HitsEntity;
 import ru.practicum.repository.EndpointRepository;
 import ru.practicum.service.EndpointService;
@@ -19,7 +14,6 @@ import ru.practicum.service.EndpointServiceImpl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Formatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -39,7 +33,7 @@ public class HitsServiceTest {
     private EndpointServiceImpl serviceImpl;
 
     @Test
-    public void testGetStats(){
+    public void testGetStats() {
         String[] uris = {"uri1", "uri2"};
         HitsEntity hitsEntity1 = HitsEntity.builder()
                 .app("app")

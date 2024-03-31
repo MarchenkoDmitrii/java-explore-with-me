@@ -1,6 +1,5 @@
 package ru.practicum.ewm.test;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +48,9 @@ public class HitsRepositoryTest {
     @Test
     void countHits() {
         List<HitsEntity> endpointEntities =
-                repository.countHits(Arrays.asList("/events/1", "/events/2"), LocalDateTime.now().minusDays(1),LocalDateTime.now().plusDays(1));
-        assertEquals(endpointEntities.size(),5);
-        assertEquals(endpointEntities.get(0).getIp(),"11111");
+                repository.countHits(Arrays.asList("/events/1", "/events/2"), LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(1));
+        assertEquals(endpointEntities.size(), 5);
+        assertEquals(endpointEntities.get(0).getIp(), "11111");
     }
 
 }

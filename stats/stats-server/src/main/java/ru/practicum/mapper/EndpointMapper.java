@@ -19,7 +19,7 @@ public class EndpointMapper {
     }
 
     public static EndpointRequest toRequest(EndpointModel endpointModel) {
-       return EndpointRequest.builder()
+        return EndpointRequest.builder()
                 .app(endpointModel.getApp())
                 .ip(endpointModel.getIp())
                 .uri(endpointModel.getUri())
@@ -37,7 +37,7 @@ public class EndpointMapper {
     }
 
     public static HitsEntity toEntity(EndpointModel endpointModel) {
-        return  HitsEntity.builder()
+        return HitsEntity.builder()
                 .app(endpointModel.getApp())
                 .id(endpointModel.getId())
                 .uri(endpointModel.getUri())
