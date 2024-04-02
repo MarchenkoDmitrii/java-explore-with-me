@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ewm_stats</artifactId>
+    <artifactId>stats</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>stats_client</module>
