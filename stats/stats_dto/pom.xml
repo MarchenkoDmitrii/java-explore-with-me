@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>stats-dto</artifactId>
+    <artifactId>stats_dto</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
