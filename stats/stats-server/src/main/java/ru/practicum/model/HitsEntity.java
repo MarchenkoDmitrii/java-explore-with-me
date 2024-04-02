@@ -1,7 +1,9 @@
 package ru.practicum.model;
 
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder(toBuilder = true)
-@ToString
 public class HitsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,6 @@ public class HitsEntity {
     @Column(name = "ip")
     private String ip;
 
-    @CreationTimestamp
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
 }

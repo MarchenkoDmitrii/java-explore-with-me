@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import ru.practicum.EndpointRequest;
+import ru.practicum.EndpointModel;
 import ru.practicum.client.BaseClient;
 
 import java.time.LocalDateTime;
@@ -29,7 +29,7 @@ public class HitsClient extends BaseClient {
         );
     }
 
-    public ResponseEntity<Object> create(EndpointRequest endpointHit) {
+    public ResponseEntity<Object> create(EndpointModel endpointHit) {
         return post(API_PREFIX_HIT, endpointHit);
     }
 

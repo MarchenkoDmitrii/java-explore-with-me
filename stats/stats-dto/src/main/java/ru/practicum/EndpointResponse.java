@@ -11,6 +11,6 @@ import lombok.ToString;
 @ToString
 public class EndpointResponse {
     private String app;
-    private String[] uri;
-    private long hits;
+    private String uri;
+    private Long hits;
 }

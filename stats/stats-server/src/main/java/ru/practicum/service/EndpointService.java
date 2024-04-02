@@ -1,14 +1,15 @@
 package ru.practicum.service;
 
+
 import ru.practicum.EndpointModel;
 import ru.practicum.EndpointResponse;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EndpointService {
-    void save(EndpointModel endpointModel);
+    EndpointModel save(EndpointModel endpointModel);
 
-    List<EndpointModel> getAllHits();
+    List<EndpointResponse> getStats(LocalDateTime startDecoded, LocalDateTime endDecoded, List<String> uris, boolean unique);
 
-    EndpointResponse getStats(String startDecoded, String endDecoded, String[] uris, boolean unique);
 }
