@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.EndpointModel;
-import ru.practicum.EndpointResponse;
+import ru.practicum.DTO.EndpointModel;
+import ru.practicum.DTO.EndpointResponse;
 import ru.practicum.service.EndpointService;
 
 import java.time.LocalDateTime;

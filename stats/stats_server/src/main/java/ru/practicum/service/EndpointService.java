@@ -1,8 +1,8 @@
 package ru.practicum.service;
 
 
-import ru.practicum.EndpointModel;
-import ru.practicum.EndpointResponse;
+import ru.practicum.DTO.EndpointModel;
+import ru.practicum.DTO.EndpointResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;

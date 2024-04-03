@@ -1,7 +1,7 @@
 package ru.practicum.mapper;
 
 import lombok.experimental.UtilityClass;
-import ru.practicum.EndpointModel;
+import ru.practicum.DTO.EndpointModel;
 import ru.practicum.model.HitsEntity;
 
 import java.time.LocalDateTime;

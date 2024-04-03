@@ -1,16 +1,16 @@
-package ru.practicum;
+package ru.practicum.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
-public class EndpointModel {
-    private int id;
+@Builder(toBuilder = true)
+@ToString
+public class EndpointResponse {
     private String app;
     private String uri;
-    private String ip;
-    private String timestamp;
+    private Long hits;
 }

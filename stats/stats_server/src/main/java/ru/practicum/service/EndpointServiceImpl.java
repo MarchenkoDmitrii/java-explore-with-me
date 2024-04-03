@@ -2,8 +2,8 @@ package ru.practicum.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.practicum.EndpointModel;
-import ru.practicum.EndpointResponse;
+import ru.practicum.DTO.EndpointModel;
+import ru.practicum.DTO.EndpointResponse;
 import ru.practicum.mapper.EndpointMapper;
 import ru.practicum.repository.EndpointRepository;
 
