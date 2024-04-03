@@ -15,6 +15,39 @@ public class BaseClient {
         this.rest = rest;
     }
 
+    protected ResponseEntity<Object> get(String path, @Nullable Map<String, Object> parameters) {
+        return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
+    }
+
+    protected <T> ResponseEntity<Object> post(String path, T body) {
+        return makeAndSendRequest(HttpMethod.POST, path, null, body);
+    }
+
+    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path,
+                                                          @Nullable Map<String, Object> parameters, @Nullable T body) {
+        HttpEntity<T> requestEntity = new HttpEntity<>(body, defaultHeaders());
+
+        ResponseEntity<Object> statsServerResponse;
+        try {
+            if (parameters != null) {
+                statsServerResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
+            } else {
+                statsServerResponse = rest.exchange(path, method, requestEntity, Object.class);
+            }
+        } catch (HttpStatusCodeException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
+        }
+        return prepareGatewayResponse(statsServerResponse);
+    }
+
+    private HttpHeaders defaultHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        return headers;
+    }
+
     private static ResponseEntity<Object> prepareGatewayResponse(ResponseEntity<Object> response) {
         if (response.getStatusCode().is2xxSuccessful()) {
             return response;
@@ -27,81 +60,5 @@ public class BaseClient {
         }
 
         return responseBuilder.build();
-    }
-
-
-    protected ResponseEntity<Object> get(String path, @Nullable Map<String, Object> parameters) {
-        return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
-    }
-
-    protected <T> ResponseEntity<Object> post(String path, T body) {
-        return post(path, null, null, body);
-    }
-
-    protected <T> ResponseEntity<Object> post(String path, long userId, T body) {
-        return post(path, userId, null, body);
-    }
-
-    protected <T> ResponseEntity<Object> post(String path, Long userId, @Nullable Map<String, Object> parameters, T body) {
-        return makeAndSendRequest(HttpMethod.POST, path, parameters, body);
-    }
-
-    protected <T> ResponseEntity<Object> put(String path, long userId, T body) {
-        return put(path, userId, null, body);
-    }
-
-    protected <T> ResponseEntity<Object> put(String path, long userId, @Nullable Map<String, Object> parameters, T body) {
-        return makeAndSendRequest(HttpMethod.PUT, path, parameters, body);
-    }
-
-    protected <T> ResponseEntity<Object> patch(String path, T body) {
-        return patch(path, null, null, body);
-    }
-
-    protected <T> ResponseEntity<Object> patch(String path, long userId) {
-        return patch(path, userId, null, null);
-    }
-
-    protected <T> ResponseEntity<Object> patch(String path, long userId, T body) {
-        return patch(path, userId, null, body);
-    }
-
-    protected <T> ResponseEntity<Object> patch(String path, Long userId, @Nullable Map<String, Object> parameters, T body) {
-        return makeAndSendRequest(HttpMethod.PATCH, path, parameters, body);
-    }
-
-    protected ResponseEntity<Object> delete(String path) {
-        return delete(path, null, null);
-    }
-
-    protected ResponseEntity<Object> delete(String path, long userId) {
-        return delete(path, userId, null);
-    }
-
-    protected ResponseEntity<Object> delete(String path, Long userId, @Nullable Map<String, Object> parameters) {
-        return makeAndSendRequest(HttpMethod.DELETE, path, parameters, null);
-    }
-
-    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path, Map<String, Object> parameters, T body) {
-        HttpEntity<T> requestEntity = new HttpEntity<>(body);
-
-        ResponseEntity<Object> objectResponseEntity;
-        try {
-            if (parameters != null) {
-                objectResponseEntity = rest.exchange(path, method, requestEntity, Object.class, parameters);
-            } else {
-                objectResponseEntity = rest.exchange(path, method, requestEntity, Object.class);
-            }
-        } catch (HttpStatusCodeException e) {
-            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
-        }
-        return prepareGatewayResponse(objectResponseEntity);
-    }
-
-    private HttpHeaders defaultHeaders(Long userId) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        return headers;
     }
 }
