@@ -25,7 +25,7 @@ services:
 
 
   ewm-service:
-    build: stats/ewm_service
+    build: ewm_service
     image: ewm_service
     container_name: ewm_service_container
     ports:
